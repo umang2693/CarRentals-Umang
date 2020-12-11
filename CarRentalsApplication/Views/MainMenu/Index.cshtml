@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Main Menu";
+}
+
+
+<div class="form-horizontal">
+
+    
+
+    <div class="form-group">
+        <div class="row">
+            <h2>Car Rentals</h2>
+        </div>
+        <div class="row">
+            <a href='@Url.Action("Index", "CarRegistration")' style="font-size:15px; color:#448aff;">
+                 Register Car
+            </a>
+        </div>
+        <div class="row">
+            <a href='@Url.Action("RentCar", "CarRegistration")' style="font-size:15px; color:#448aff;">
+                 Rent Car
+            </a>
+        </div>
+        <div class="row">
+            <a href='@Url.Action("ReturnCar", "CarRegistration")' style="font-size:15px; color:#448aff;">
+                Car Return
+            </a>
+        </div>
+        <div class="row">
+            <a href='@Url.Action("RemoveCar", "CarRegistration")' style="font-size:15px; color:#448aff;">
+                Remove Car
+            </a>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function () {
+            var success = @((TempData["Message"] != null).ToString().ToLower());
+            if (success == true) {
+                var messageval = '@TempData["Message"]';
+                switch (messageval) {
+                    case 'Already Rented':
+                        alert("Car Already Rented");
+                        break;
+                    case 'Rent Successfull':
+                        alert("Rented Successful");
+                        break;
+                    case 'Not Rented':
+                        alert("This car is not rented yet.");
+                        break;
+                    case 'Returned':
+                        var msg = '@TempData["ReturnDtls"]';
+                        var newMsg = msg.split('*');
+                        alert("Time Take For : " + newMsg[0] + " Total Price : " + newMsg[1]);
+                        break;
+                    case 'Deleted':
+                        alert("Car Removed Successfully");
+                        break;
+                    case 'Error Occured':
+                        alert("Error Occured");
+                        break;
+
+                }
+            }
+            }
+
+        );
+
+</script>

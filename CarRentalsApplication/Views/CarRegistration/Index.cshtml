@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CarRentalsApplication.Models.CarDisplayListModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<form class="form-material" method="post">
+    <div class="row">
+        <div class="col-md-12 px-2">
+            
+                <h2>Car Registration</h2>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+                            <a href="@Url.Action("Create", "CarRegistration")" class="btn btn-primary pull-right">
+                                <i class="fa fa-plus"></i><span> Add New</span>
+                            </a>
+                        </div>
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td scope="col" style="width:120px"><b>Car Name</b></td>
+                                        <td scope="col" style="width:120px"><b>Car Number</b></td>
+                                        <td scope="col" style="width:150px"><b>Hourly Rate (Rs.)</b></td>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td data-label="Car Name">@item.CarName</td>
+                                            <td data-label="Car Number">@item.CarNumber</td>
+                                            <td data-label="Hourly Rate">@item.HourlyRate</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</form>
+<div class="row" style="margin-top:20px">
+    @Html.ActionLink("Back To Home", "Index", "MainMenu")
+</div>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function () {
+            var success = @((TempData["CarNo"] != null).ToString().ToLower());
+            if (success == true) {
+                alert("Your car no is : " + '@TempData["CarNo"]');
+            }
+            }
+
+        );
+
+</script>
+

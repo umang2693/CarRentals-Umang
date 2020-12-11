@@ -1,0 +1,28 @@
+﻿@model CarRentalsApplication.DB.Car_Rent_Details
+@{
+    ViewBag.Title = "RemoveCar";
+}
+
+<h2>Remove Car</h2>
+
+<form class="form-material" method="post" enctype="multipart/form-data">
+
+    <div class="form-horizontal">
+        <h4>Enter Details</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Car Number:</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.CarNumber, new SelectList(ViewBag.CarNoList, "Value", "Text"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Cancle" class="btn btn-default" onclick="javascript:document.location.href='@Url.Action("Index", "MainMenu")'" />
+            </div>
+
+        </div>
+    </div>
+</form>
